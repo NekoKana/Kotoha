@@ -1,0 +1,7 @@
+{
+  "name": "Kotoha",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
