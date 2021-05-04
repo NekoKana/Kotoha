@@ -1,0 +1,28 @@
+#top {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 20px;
+}
+
+#bottom-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+#form-item {
+  margin-bottom: 50px;
+}
+
+.login_input {
+  margin-bottom: 10px;
+  height: 28px;
+  transition: all .6s ease;
+  border-bottom: 1px solid #cccccc;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  border-radius: 0px;
+}
