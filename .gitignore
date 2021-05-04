@@ -64,3 +64,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 # End of https://www.toptal.com/developers/gitignore/api/angular,ionic3
+
+# VSCode
+.vscode
