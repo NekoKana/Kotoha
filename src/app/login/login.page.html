@@ -7,19 +7,19 @@
 <ion-content>
   <div id="top">ログイン</div>
   <form class="ion-padding" (submit)="navigate()">
-    <div id="form-item">
+    <div class="form-item">
       <ion-label position="floating">メールアドレス</ion-label>
-      <ion-input class="login_input" [(ngModel)]="email" name="email"></ion-input>
+      <ion-input class="login-input" [(ngModel)]="email" name="email"></ion-input>
     </div>
 
-    <div id="form-item">
+    <div class="form-item">
       <ion-label position="floating">パスワード</ion-label>
-      <ion-input class="login_input" required type="password" [(ngModel)]="password" name="password"></ion-input>
+      <ion-input class="login-input" required type="password" [(ngModel)]="password" name="password"></ion-input>
     </div>
 
-    <div id="form-item">
-      <ion-button type="submit" id="bottom-button" expand="block" fill="outline" color="base-green">ログイン</ion-button>
-      <ion-button id="bottom-button" expand="block" fill="outline" color="base-green" (click)="navigateToSignup()">新規登録</ion-button>
+    <div class="form-item">
+      <ion-button type="submit" class="bottom-button" expand="block" fill="outline" color="base-green">ログイン</ion-button>
+      <ion-button class="bottom-button" expand="block" fill="outline" color="base-green" (click)="navigateToSignup()">新規登録画面へ</ion-button>
     </div>
   </form>
 </ion-content>
