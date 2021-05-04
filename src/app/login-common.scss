@@ -5,20 +5,29 @@
   margin-top: 20px;
 }
 
-#bottom-button {
+.bottom-button {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  height: 50px;
   width: 90%;
 }
 
-#form-item {
+.form-item {
   margin-bottom: 50px;
 }
 
-.login_input {
-  margin-bottom: 10px;
-  height: 28px;
+.align-items-flex-end {
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+  justify-content: space-around;
+}
+
+.inline-item {
+  width: 300px;
+}
+
+.login-input {
   transition: all .6s ease;
   border-bottom: 1px solid #cccccc;
   border-right: none;
