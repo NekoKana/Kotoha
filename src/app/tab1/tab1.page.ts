@@ -39,6 +39,15 @@ export class Tab1Page implements OnInit {
   ) {}
   
   /*シェアボードに乗せるリスト(テスト用も兼ねてる) */
+ 
+  /*
+  SharePost[] = {
+    content_id: int型のid,
+    content: 本文,
+    is_completed: それは完了したか？,
+  }
+  */
+
   shares: SharePost[] = [
       {
         content_id: 0,
@@ -106,7 +115,7 @@ export class Tab1Page implements OnInit {
     await alert.present();
 
   }
-  
+
   /*まだ通信処理との連携は取れていません */
   /*Put通信処理 */
   register = () => {
