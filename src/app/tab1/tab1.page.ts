@@ -106,6 +106,8 @@ export class Tab1Page implements OnInit {
     await alert.present();
 
   }
+  
+  /*まだ通信処理との連携は取れていません */
   /*Put通信処理 */
   register = () => {
     this.registerPostObj['family_id'] = this.family_id;
