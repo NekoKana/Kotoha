@@ -18,7 +18,7 @@ export class GlobalService {
     private _http: HttpClient
   ) { }
 
-  static readonly HOST: string = 'http://example.com';
+  static readonly HOST: string = 'http://140.227.58.187/neko/';
 
   public http(_endpoint: string, _trans_data: any = ''): Observable<any> {
     let ret: Observable<any>;
