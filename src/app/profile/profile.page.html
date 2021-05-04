@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      プロフィール
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">プロフィール</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list-header>
+    メールアドレス
+  </ion-list-header>
+  <ion-item class="widthl">
+    <ion-label>
+      {{ email }}
+    </ion-label>
+  </ion-item>
+
+  <ion-list-header>
+    ユーザーID
+  </ion-list-header>
+  <ion-item class="widthl">
+    <ion-label>
+      {{ user_id }}
+    </ion-label>
+  </ion-item>
+  
+  <ion-list-header>
+    ユーザーネーム
+  </ion-list-header>
+  <ion-item class="widthl">
+    <ion-label>
+      {{ user_name }}
+    </ion-label>
+  </ion-item>
+
+  <ion-list-header>
+    名前
+  </ion-list-header>
+  
+    <ion-item class="widthl">
+      <ion-label>
+        {{ last_name }}
+      </ion-label>
+      <ion-label>
+        {{ first_name }}
+      </ion-label>
+    </ion-item>
+  
+
+  <ion-list-header>
+    誕生日
+  </ion-list-header>
+  <ion-item class="widthl">
+    <ion-label>
+      {{ birth }}
+    </ion-label>
+  </ion-item>
+  　
+
+</ion-content>
