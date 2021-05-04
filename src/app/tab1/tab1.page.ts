@@ -23,6 +23,7 @@ export class Tab1Page implements OnInit {
   registerReturnObj: any = {};
   getPostObj: any = {};
   getReturnObj: any = {};
+
   
   getContent: SharePost[];
   
@@ -42,9 +43,9 @@ export class Tab1Page implements OnInit {
  
   /*
   SharePost[] = {
-    content_id: int型のid,
-    content: 本文,
-    is_completed: それは完了したか？,
+    content_id: id(int),
+    content: 本文(string),
+    is_completed: それは完了したか？(boolean),
   }
   */
 
@@ -66,7 +67,7 @@ export class Tab1Page implements OnInit {
   get shareList(): SharePost[] {
     return this.shares.filter(share => !share.is_completed);
   }
-
+  /*ゲッター */
   get doneList(): SharePost[] {
     return this.shares.filter(share => share.is_completed);
   }
@@ -78,33 +79,54 @@ export class Tab1Page implements OnInit {
 
   onDeleteClicked(share: SharePost): void {
     this.shares.splice(this.shares.indexOf(share), 1);
+
   }
 
   addSharePost(share: SharePost): void {
     this.shares.push(share);
   }
 
-  /*シェアボードに乗せるリストに追加する処理（書きかけ） */
+  /*シェアボードに乗せるリストに追加する処理 */
   async onAddButtonClicked(): Promise<void> {
     const alert = await this.alertController.create({
+
+      //メッセージ
       header: '追加',
       subHeader: '',
       message: '家族に伝えたいことは何？',
+
+      //ボタン　CancelとOKがあり選択によって処理が変わる
       buttons: [{
+
+        //Cancel
         text: 'Cancel',
         role: 'cancel'
       },
       {
+
+        //OK
         text: 'OK',
         handler: (data) => {
 
+          //alertを用いたshare変数への代入
           const share = new SharePost();
           share.content_id = Number((new Date).getTime().toString());
           console.log(share.content_id);
           share.content = data.share;
           console.log(share.content);
-          this.addSharePost(share);        }
+
+          //put通信処理
+          this.register(share)           
+
+          if(this.result){
+          //ShareBoardへの追加処理
+          this.addSharePost(share);  
+          }
+
+        }
       }],
+
+      //入力処理
       inputs: [{
         name: 'share',
         id:'new-share',
@@ -116,17 +138,18 @@ export class Tab1Page implements OnInit {
 
   }
 
-  /*まだ通信処理との連携は取れていません */
+  /*まだ通信処理との連携は完全には取れていません */
   /*Put通信処理 */
-  register = () => {
-    this.registerPostObj['family_id'] = this.family_id;
-    this.registerPostObj['content_id'] = this.content_id;
-    this.registerPostObj['content'] = this.content;
+  register = (share:SharePost) => {
+    this.registerPostObj['family_id'] = share.family_id;
+    this.registerPostObj['content_id'] = share.content_id;
+    this.registerPostObj['content'] = share.content;
     const registbody = this.registerPostObj;
 
     this.gs.http('/shareboard/put.php', registbody).subscribe(
       res => {
         this.registerReturnObj = res;
+        this.result = this.registerReturnObj['result'];
         if(this.registerReturnObj['result'] == true){
           console.log('Communication passed!!');
         }else{
@@ -135,6 +158,7 @@ export class Tab1Page implements OnInit {
       }
     )
   }
+
 
   /*get通信処理 */
   get = () => {
@@ -148,5 +172,9 @@ export class Tab1Page implements OnInit {
       }
     )
   
+  }
+
+  delete = () => {
+
   }
 }
