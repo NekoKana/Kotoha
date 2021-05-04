@@ -1,6 +1,5 @@
 <ion-header>
-  
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-title>
       ShareBoard
     </ion-title>
@@ -9,16 +8,20 @@
       <ion-button (click) = "onAddButtonClicked()">追加</ion-button>
     </ion-buttons>
   </ion-toolbar>
-
- 
 </ion-header>
 
 <ion-content padding>
   
+  <ion-buttons>
+    <ion-button (click) = "get()">Get</ion-button>
+  </ion-buttons>
+
+  <ion-card>
+
   <ion-grid>
     <ion-row>
         <ion-col *ngFor = "let share of shareList">
-          <ion-item (click)="onItemClicked(share)">
+          <ion-item class="center" (click)="onItemClicked(share)">
              <ion-card class="contents">
                <ion-card-content>
                 <h2>{{ share.content }}</h2>
@@ -34,5 +37,6 @@
     </ion-row>
   </ion-grid>
 
+  </ion-card>
 
 </ion-content>
