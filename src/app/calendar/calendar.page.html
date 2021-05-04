@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      カレンダー
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="ion-justify-content-center ion-margin-top">
+    <ion-button (click)="backToCurrent()" fill="clear">今月に戻る</ion-button>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="2">
+      <ion-button fill="clear" (click)="back()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+
+    <!--
+    <ion-col size="8" class="ion-text-center">
+      <h2>{{ viewTitle }}</h2>
+    </ion-col>
+  -->
+
+    <ion-col size="2">
+      <ion-button fill="clear" (click)="next()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate">
+    <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+      <ion-item *ngFor="let event of selectedDate?.events" (click)="eventSelected(event)">
+        <span class="event-detail"> {{event.title}}</span>
+      </ion-item>
+      <ion-item *ngIf="selectedDate?.events.length === 0">
+        <div class="no-events-label">{{ selectedDate.date | date: 'yy年MM月dd日'}}予定の ToDo はありません。</div>
+      </ion-item>
+    </ion-list>
+  </ng-template>
+
+  <calendar [eventSource]="eventSource"
+  [calendarMode]="calendar.mode"
+  [currentDate]="calendar.currentDate"
+  (onCurrentDateChanged)="onCurrentDateChanged($event)"
+  (onRangeChanged)="reloadSource(startTime, endTime)"
+  (onEventSelected)="onEventSelected($event)"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onTimeSelected)="onTimeSelected($event)"
+  [step]="calendar.step">
+  </calendar>
+
+</ion-content>
