@@ -20,7 +20,9 @@ export class LoginPage implements OnInit {
     public gs: GlobalService
   ) { }
 
-  ngOnInit = () => this.login(localStorage.email, localStorage.password);
+  ngOnInit() {
+    this.login(localStorage.email, localStorage.password);
+  }
 
   ngOnDestroy() {
     if(!this.result){
@@ -39,16 +41,16 @@ export class LoginPage implements OnInit {
 
     const body: any = this.postObj;
 
-    console.log(body);
+    // console.log(body);
 
     this.gs.http('/login.php', body).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.result = res['result'];
+
         if (this.result) {
-          console.log("login");
-          localStorage.email = res['email'];
-          localStorage.password = res['password'];
+          localStorage.email = email;
+          localStorage.password = password;
           localStorage.user_id = res['user_id'];
           localStorage.user_name = res['user_name'];
           localStorage.first_name = res['first_name'];
@@ -63,6 +65,4 @@ export class LoginPage implements OnInit {
       }
     );
   }
-
-
 }
