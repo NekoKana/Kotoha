@@ -10,8 +10,7 @@ export class ProfilePage {
   email: string;
   user_id: string;
   user_name: string;
-  first_name: string;
-  last_name: string;
+  name : string;
   birth: string;
 
   constructor(
@@ -25,8 +24,7 @@ export class ProfilePage {
       this.email = localStorage.email;
       this.user_id = localStorage.user_id;
       this.user_name = localStorage.user_name;
-      this.first_name = localStorage.first_name;
-      this.last_name = localStorage.last_name;
+      this.name = localStorage.last_name + ' ' + localStorage.first_name;
       this.birth = localStorage.birth;
     }
   }
