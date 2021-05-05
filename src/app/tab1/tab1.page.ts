@@ -38,12 +38,10 @@ export class Tab1Page implements OnInit {
   constructor(
     /*gsたち */
     public gs: GlobalService,
-    public gs2: GlobalService,
-    public gs3: GlobalService,
     private alertController: AlertController,
 
     /*emailがnullだった場合、画面遷移させる準備 */
-   /* private router: Router*/
+    private router: Router
 
   ) {}
 
@@ -52,12 +50,12 @@ export class Tab1Page implements OnInit {
     localStorage.family_id = 'mbwgfhwtjrvodiatmnff';
     this.get();
 
-    /*
-     email == nullだった場合、画面遷移させる
-    if(this.email == null) {
+    
+     //email == nullだった場合、画面遷移させる
+    if (localStorage.email == null) {
       this.router.navigate(['login']);
     }
-    */
+    
   }
   
   /*シェアボードに乗せるリスト(テスト用も兼ねてる) */
@@ -90,7 +88,9 @@ export class Tab1Page implements OnInit {
       subHeader: '',
       message:'完了しますか？削除しますか？',
 
-      buttons:[{
+      buttons:[
+      
+        {
         text: '削除',
         handler: () => {
           this.onDeleteClicked(share);
@@ -103,7 +103,13 @@ export class Tab1Page implements OnInit {
           this.complete(share);
         }
 
-      }]
+      },
+      {
+        text:'Cancel',
+        role:'cancel'
+      },
+    
+    ]
 
     });
     await alert.present();
@@ -233,7 +239,7 @@ export class Tab1Page implements OnInit {
 
     const getbody = this.getPostObj;
     
-    this.gs2.http('/shareboard/get.php', getbody).subscribe(
+    this.gs.http('/shareboard/get.php', getbody).subscribe(
       res => {
         this.getReturnObj = res;//レスポンスをgetReturnObjに代
 
@@ -278,7 +284,7 @@ export class Tab1Page implements OnInit {
     this.deletePostObj['content_id'] = share.content_id;
     const deletebody = this.deletePostObj;
 
-    this.gs3.http('/shareboard/delete.php', deletebody).subscribe(
+    this.gs.http('/shareboard/delete.php', deletebody).subscribe(
       res => {
         this.deleteReturnObj = res;
         //削除の確認
