@@ -58,7 +58,7 @@ export class SignupPage implements OnInit {
     const year: number = birth.getFullYear();
     const date: number = birth.getDate();
     const month: number = birth.getMonth() + 1;
-    this.postObj['birth'] = year.toString() + '-' + date.toString() + '-' + month.toString();
+    this.postObj['birth'] = year.toString() + '-' + month.toString() + '-' + date.toString();
 
     const body: any = this.postObj;
 
