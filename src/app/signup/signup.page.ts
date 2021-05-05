@@ -27,6 +27,9 @@ export class SignupPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (localStorage.email != null) {
+      this.router.navigate(['login']);
+    }
   }
 
   navigate = () => this.register();
