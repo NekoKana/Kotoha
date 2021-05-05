@@ -14,7 +14,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, NgCalendarModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, HttpClient],
   bootstrap: [AppComponent],
 })
