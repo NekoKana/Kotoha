@@ -1,17 +1,32 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      ShareBoard
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="large" color="medium" expand="block" fill="solid" (click) = "onAddButtonClicked()">追加</ion-button>
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen] = 'true'>
+  <ion-grid>
+    <ion-row>
+        <ion-col *ngFor = "let share of shareList">
+          <ion-item class="center" (click)="onItemClicked(share)">
+             <ion-card class="contents">
+               <ion-card-content>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+                <h2>{{ share.content }}</h2>
+
+               </ion-card-content>
+              </ion-card>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>

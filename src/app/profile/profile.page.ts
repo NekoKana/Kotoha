@@ -27,8 +27,12 @@ export class ProfilePage {
       this.user_name = localStorage.user_name;
       this.family_id = localStorage.family_id;
       this.name = localStorage.last_name + ' ' + localStorage.first_name;
-      this.birth = localStorage.birth;
+      const birth: Date = new Date(localStorage.birth);
+      const year: number = birth.getFullYear();
+      const date: number = birth.getDate();
+      const month: number = birth.getMonth() + 1;
+      this.birth = year.toString() + '年' + month.toString() + '月' + date.toString() + '日';
     }
   }
-  
+
 }
