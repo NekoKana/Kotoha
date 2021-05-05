@@ -14,6 +14,7 @@ export class SignupPage implements OnInit {
   last_name: string;
   user_name: string;
   birth: string;
+  family_id: string;
 
   result: boolean;
 
@@ -42,6 +43,14 @@ export class SignupPage implements OnInit {
     this.postObj['first_name'] = this.first_name;
     this.postObj['last_name'] = this.last_name;
     this.postObj['user_name'] = this.user_name;
+
+    if ((this.family_id != null) && (this.family_id != "")) {
+      this.postObj['has_family_id'] = true;
+      this.postObj['family_id'] = this.family_id;
+    } else {
+      this.postObj['has_family_id'] = false;
+    }
+
     const birth: Date = new Date(this.birth);
     const year: number = birth.getFullYear();
     const date: number = birth.getDate();

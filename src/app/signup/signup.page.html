@@ -36,6 +36,11 @@
     </div>
 
     <div class="form-item">
+      <ion-label position="floating">家族の誰かがアカウントを持っている場合、家族IDを入力してください</ion-label>
+      <ion-input class="login-input" [(ngModel)]="family_id" name="family_id" placeholder="例） abkeiacmkaidjefa"></ion-input>
+    </div>
+
+    <div class="form-item">
       <ion-button type="submit" class="bottom-button" expand="block" fill="outline" color="base-green">新規登録</ion-button>
       <ion-button class="bottom-button" expand="block" fill="outline" color="base-green" (click)="navigateToLogin()">ログイン画面へ</ion-button>
     </div>
