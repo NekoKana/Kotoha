@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,14 @@ export class ProfilePage {
   last_name: string = localStorage.last_name;
   birth: string = localStorage.birth;
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    if (this.email == null) {
+      this.router.navigate(['login']);
+    }
+  }
   
 }
