@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['../login-common.scss'],
 })
 
 export class LoginPage implements OnInit {
@@ -17,7 +17,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    public gs: GlobalService
+    public gs: GlobalService,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class LoginPage implements OnInit {
 
   navigate = () => this.login(this.email, this.password);
 
-  navigateToSignup = () => this.router.navigate(['signup']);
+  navigateToSignup = () => this.safeNavigate(['signup']);
 
   login(email: string, password: string) {
 
@@ -45,17 +46,18 @@ export class LoginPage implements OnInit {
 
     this.gs.http('/login.php', body).subscribe(
       res => {
-        // console.log(res);
+        console.log(res);
         this.result = res['result'];
 
         if (this.result) {
           localStorage.email = email;
           localStorage.password = password;
           localStorage.user_id = res['user_id'];
+          localStorage.family_id = res['family_id'];
           localStorage.user_name = res['user_name'];
           localStorage.first_name = res['first_name'];
           localStorage.last_name = res['last_name'];
-          localStorage.age = res['age'];
+          localStorage.birth = res['birth'];
 
           this.router.navigate(['/tabs', 'tab1']);
         }
@@ -64,5 +66,9 @@ export class LoginPage implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  safeNavigate(commands: any[]): void {
+    this.ngZone.run(() => this.router.navigate(commands)).then();
   }
 }
