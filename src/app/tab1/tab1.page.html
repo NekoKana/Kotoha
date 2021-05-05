@@ -5,16 +5,15 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button (click) = "onAddButtonClicked()">追加</ion-button>
+      <ion-button size="large" color="medium" expand="block" fill="solid" (click) = "onAddButtonClicked()">追加</ion-button>
     </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
   
-  <ion-buttons>
-    <ion-button (click) = "get()">Get</ion-button>
-  </ion-buttons>
 
   <ion-grid>
     <ion-row>
@@ -22,15 +21,12 @@
           <ion-item class="center" (click)="onItemClicked(share)">
              <ion-card class="contents">
                <ion-card-content>
+
                 <h2>{{ share.content }}</h2>
+
                </ion-card-content>
               </ion-card>
           </ion-item>
-            <ion-item-options side="end">
-              <ion-item-option color="danger" expandable (click)="onDeleteClicked(share)">
-              削除
-              </ion-item-option>
-            </ion-item-options>
       </ion-col>
     </ion-row>
   </ion-grid>

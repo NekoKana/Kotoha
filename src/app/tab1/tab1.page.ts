@@ -7,6 +7,7 @@ import { SharePost } from './tab1.model';
 import { tick } from '@angular/core/testing';
 import { EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -48,7 +49,7 @@ export class Tab1Page implements OnInit {
 
     
   ngOnInit () {
-    localStorage.family_id = 'tylgophxsxpqrmhbbyxe';
+    localStorage.family_id = 'mbwgfhwtjrvodiatmnff';
     this.get();
 
     /*
@@ -65,25 +66,12 @@ export class Tab1Page implements OnInit {
   SharePost[] = {
     content_id: id(int),
     content: 本文(string),
+    due: new Date,
     is_completed: それは完了したか？(boolean),
   }
   */
 
-  shares: SharePost[] = [
-      {
-        content_id: 0,
-        content: '今月授業参観ですね',
-        due: new Date('2021-05-05'),
-        is_completed: false 
-      },
-
-      {
-        content_id: 1,
-        content: 'お花見でも行こうか',
-        due: new Date('2020-05-05'),
-        is_completed: false
-      }
-  ];
+  shares: SharePost[] = [];
 
   /*ゲッター */
   get shareList(): SharePost[] {
@@ -95,9 +83,30 @@ export class Tab1Page implements OnInit {
   }
 
   /*完了時の操作 */
-  onItemClicked(share: SharePost): void {
-    share.is_completed = !share.is_completed;
-    this.complete(share);
+  async onItemClicked(share: SharePost): Promise<void> {
+    const alert = await this.alertController.create({
+      
+      header: (share.content),
+      subHeader: '',
+      message:'完了しますか？削除しますか？',
+
+      buttons:[{
+        text: '削除',
+        handler: () => {
+          this.onDeleteClicked(share);
+        }
+      },
+      {
+        text: '完了',
+        handler: () => {
+          share.is_completed = !share.is_completed;
+          this.complete(share);
+        }
+
+      }]
+
+    });
+    await alert.present();
   }
 
   /*削除時の処理 */
@@ -119,7 +128,7 @@ export class Tab1Page implements OnInit {
       header: '追加',
       subHeader: '',
       message: '家族に伝えたいことは何？',
-      
+  
 
       //ボタン　CancelとOKがあり選択によって処理が変わる
       buttons: [{
@@ -272,12 +281,8 @@ export class Tab1Page implements OnInit {
     this.gs3.http('/shareboard/delete.php', deletebody).subscribe(
       res => {
         this.deleteReturnObj = res;
-
-        //グローバル変数に代入
-        this.deleteResult = this.deleteReturnObj['result'];
-        
         //削除の確認
-        if(this.deleteReturnObj == true ) {
+        if(this.deleteReturnObj['result'] == true ) {
           console.log("Delete Successfuly!!");
         } else {
           console.log("Delete Failed......");
