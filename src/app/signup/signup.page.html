@@ -32,7 +32,12 @@
 
     <div class="form-item">
       <ion-label position="floating">誕生日</ion-label>
-      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="birth" name="birth" placeholder="日付を選択" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+      <ion-datetime class="login-input" displayFormat="YYYY/MM/DD" [(ngModel)]="birth" name="birth" placeholder="日付を選択" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+    </div>
+
+    <div class="form-item">
+      <ion-label position="floating">家族の誰かがアカウントを持っている場合、家族IDを入力してください</ion-label>
+      <ion-input class="login-input" [(ngModel)]="family_id" name="family_id" placeholder="例） abkeiacmkaidjefa"></ion-input>
     </div>
 
     <div class="form-item">
